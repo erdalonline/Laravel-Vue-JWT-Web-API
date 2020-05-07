@@ -15,7 +15,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response ()->json (User::all ());
+        $users = User::all ();
+        $tmp = array();
+
+        foreach ($users as $user) {
+            array_push ($tmp, array(
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role_id' => $user->role_id,
+                'role' => $user->getRole->name,
+            ));
+        }
+        return response ()->json ($tmp);
     }
 
     /**
@@ -42,11 +54,11 @@ class UserController extends Controller
          * 'password' => 'required|password'
          * ]);
          */
-        $user = User::create ([
-            'name' => $request->name,
-            'role_id' => $request->role_id,
-            'email' => $request->email,
-            'password' => Hash::make ($request->password),
+        $user=User::create ([
+            'name'=>$request->name,
+            'role_id'=>$request->role_id,
+            'email'=>$request->email,
+            'password'=>Hash::make ($request->password),
         ]);
 
         if ($user) {
