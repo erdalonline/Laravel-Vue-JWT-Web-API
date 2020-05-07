@@ -26,5 +26,6 @@ Route::group(['middleware' => ['auth.jwt', 'permission']], function () {
 
     Route::get('logout', 'AuthController@logout');
 
-    Route::resource ('users','UserController');
+    Route::resource ('users','UserController'); //user account
+    Route::resource ('userrole','UserRoleController'); // user role controller
 });
