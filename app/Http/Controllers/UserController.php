@@ -44,7 +44,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -54,7 +54,7 @@ class UserController extends Controller
          * 'password' => 'required|password'
          * ]);
          */
-        $user=User::create ([
+        $user = User::create ([
             'name'=>$request->name,
             'role_id'=>$request->role_id,
             'email'=>$request->email,
@@ -62,7 +62,14 @@ class UserController extends Controller
         ]);
 
         if ($user) {
-            return response ()->json ($user);
+
+            return response ()->json ([
+                'id' => $user->name,
+                'name'=> $user->name,
+                'role_id'=> $user->role_id,
+                'email'=> $user->email,
+                'role' => $user->getRole->name
+            ]);
         }
 
     }
