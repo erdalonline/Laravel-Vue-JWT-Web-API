@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -48,12 +49,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        /**
-         * $validator = $request->validate ([
-         * 'email' => 'required|email',
-         * 'password' => 'required|password'
-         * ]);
-         */
+
+        $rules = [
+            'name' => 'required',
+            'email'  => 'required|unique:users,email',
+            'password' => 'required|min:6',
+            'role_id' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Kullanıcı adı Gereklidir!',
+            'required'      => 'Gerekli alanları giriniz.',
+            'email.unique' => 'Bu E-posta daha önce kayıt edilmiş!',
+            'password.min' => 'Girilen şifre en az 6 karakter olmalıdır!',
+        ];
+
+        $validator = Validator::make ($request->all (), $rules, $messages);
+
+        if ( $validator->fails() )
+        {
+            return response ()->json($validator->errors ());
+        }
+
         $user = User::create ([
             'name'=>$request->name,
             'role_id'=>$request->role_id,
@@ -64,6 +81,7 @@ class UserController extends Controller
         if ($user) {
 
             return response ()->json ([
+                'error' => 'success',
                 'id' => $user->name,
                 'name'=> $user->name,
                 'role_id'=> $user->role_id,
