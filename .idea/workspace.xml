@@ -4,6 +4,10 @@
     <list default="true" id="3dd50d29-69ae-4016-8cd8-4f3028bffbc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserRoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserRoleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/UserPermission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/UserPermission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/UserRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserRole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_06_234015_create_user_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_06_234015_create_user_roles_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +155,7 @@
       <updated>1588471487734</updated>
       <workItem from="1588471493849" duration="7694000" />
       <workItem from="1588634969271" duration="961000" />
-      <workItem from="1588727859428" duration="45807000" />
+      <workItem from="1588727859428" duration="52602000" />
     </task>
     <servers />
   </component>
@@ -167,10 +171,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="457" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/1600.0.1600.860@0.0.1600.860" timestamp="1588817478232" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589042263149">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589084122607">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/1600.0.1600.860@0.0.1600.860" timestamp="1589042263149" />
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/1600.0.1600.860@0.0.1600.860" timestamp="1589084122607" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1588883926356">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -32,6 +32,6 @@ class UserPermission
             'error' => 'perrmission',
             'type' => 'danger',
             'message' => 'Bu işlem için yetkiniz yok !'
-        ],200);
+        ],401);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserRoleController extends Controller
 {
@@ -19,7 +21,8 @@ class UserRoleController extends Controller
         foreach ($roles as $role){
             array_push ($tmp, array(
                 'value' => $role->id,
-                'text' => $role->name
+                'text' => $role->name,
+                'description' => $role->description
             ));
         }
         return response ()->json ($tmp);
@@ -32,7 +35,7 @@ class UserRoleController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -43,7 +46,34 @@ class UserRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Rol adı Gereklidir!',
+        ];
+
+        $validator = Validator::make ($request->all (), $rules, $messages);
+
+        if ( $validator->fails() )
+        {
+            return response ()->json($validator->errors (), 401);
+        }
+
+        $userRole = UserRole::create ([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        if ($userRole) {
+            return response ()->json ([
+                'error' => 'success',
+                'value' => $userRole->name,
+                'text' => $userRole->name,
+                'description'=> $userRole->description
+            ]);
+        }
     }
 
     /**
