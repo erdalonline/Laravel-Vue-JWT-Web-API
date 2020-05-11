@@ -22,10 +22,14 @@ Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::post('test', 'AuthController@register');
 Route::get('user', 'AuthController@user')->middleware ('auth.jwt');
+Route::get('logout', 'AuthController@logout')->middleware ('auth.jwt');
 Route::group(['middleware' => ['auth.jwt', 'permission']], function () {
 
-    Route::get('logout', 'AuthController@logout');
+
 
     Route::resource ('users','UserController'); //user account
     Route::resource ('userrole','UserRoleController'); // user role controller
+    Route::post ('userroleterm/{id}', 'UserRoleTermController@setRoleActions');
+    Route::get ('userroleterm/{id}', 'UserRoleTermController@getRoleActions')
+    ->where ('id', '[0-9]+')->name ('getActions');
 });

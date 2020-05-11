@@ -69,7 +69,7 @@ class UserRoleController extends Controller
         if ($userRole) {
             return response ()->json ([
                 'error' => 'success',
-                'value' => $userRole->name,
+                'value' => $userRole->id,
                 'text' => $userRole->name,
                 'description'=> $userRole->description
             ]);

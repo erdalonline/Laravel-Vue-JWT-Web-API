@@ -13,7 +13,7 @@ class UserRoleActionsSeeder extends Seeder
     {
         $routes=[];
         foreach (Route::getRoutes ()->getIterator () as $route) {
-            if (in_array ("auth.jwt",$route->action['middleware'])) {
+            if (in_array ("permission",$route->action['middleware']) && in_array ("auth.jwt",$route->action['middleware'])) {
                 $controller = explode ('@',$route->action['controller']);
                 $controller = $controller[0];
                 if(!isset($routes[$controller])){
