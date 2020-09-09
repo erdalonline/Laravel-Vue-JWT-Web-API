@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             UserRoleSeeder::class,
             UserRoleActionsSeeder::class,
-            UserRoleTermsSeeder::class
+            UserRoleTermsSeeder::class,
+            SettingsSeeder::class
         ]);
     }
 }

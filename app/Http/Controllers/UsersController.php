@@ -148,7 +148,9 @@ class UsersController extends Controller
 
         $user = User::find($id);
         $user->name = $request->name;
-        $user->role_id = $request->role_id;
+        if (Auth::id () != $id) { // oturumu açık olanı silme
+            $user->role_id=$request->role_id;
+        }
         if (!empty($request->password)){
             $user->password = Hash::make ($request->password);
         }
