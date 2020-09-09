@@ -101,7 +101,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response ()->json ($user);
     }
 
     /**
@@ -124,7 +125,38 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required',
+//            'email'  => 'required|unique:users,email',
+            'password' => 'nullable|min:6',
+            'role_id' => 'required'
+        ];
+
+        $messages = [
+            'name.required' => 'Kullanıcı adı Gereklidir!',
+            'required'      => 'Gerekli alanları giriniz.',
+//            'email.unique' => 'Bu E-posta daha önce kayıt edilmiş!',
+            'password.min' => 'Girilen şifre en az 6 karakter olmalıdır!',
+        ];
+
+        $validator = Validator::make ($request->all (), $rules, $messages);
+
+        if ( $validator->fails() )
+        {
+            return response ()->json($validator->errors (), 401);
+        }
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->role_id = $request->role_id;
+        if (!empty($request->password)){
+            $user->password = Hash::make ($request->password);
+        }
+        $user->save();
+        if ($user){
+            return  response ()->json ($user);
+        }
+
     }
 
     /**
